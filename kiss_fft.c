@@ -17,6 +17,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 /* The guts header contains all the multiplication and addition macros that are defined for
  fixed or floating point complex numbers.  It also delares the kf_ internal functions.
  */
+#ifdef __arm__
 void kf_bfly2(kiss_fft_cpx * Fout,
               const size_t fstride,
               const kiss_fft_cfg st,
@@ -26,7 +27,7 @@ void kf_bfly4(kiss_fft_cpx * Fout,
               const size_t fstride,
               const kiss_fft_cfg st,
               const size_t m);
-/*
+#else
 static void kf_bfly2(
         kiss_fft_cpx * Fout,
         const size_t fstride,
@@ -97,7 +98,8 @@ static void kf_bfly4(
         ++Fout;
     }while(--k);
 }
-*/
+#endif
+
 static void kf_bfly3(
          kiss_fft_cpx * Fout,
          const size_t fstride,

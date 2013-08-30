@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+# Comment this out to build on x86 or other !NEON platforms
+CONFIG   += neon
 
 include (/opt/qwt-6.1.0/features/qwt.prf)
 
@@ -25,9 +27,10 @@ SOURCES += main.cpp\
         dialog.cpp \
     spectrumplot.cpp \
     sdrcapture.cpp \
-    kiss_fft_bfly2_neon.S \
-    kiss_fft_bfly4_neon.S \
     kiss_fft.c
+
+neon:SOURCES += kiss_fft_bfly2_neon.S \
+                 kiss_fft_bfly4_neon.S
 
 HEADERS  += dialog.h \
     spectrumplot.h \
